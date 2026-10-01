@@ -1,0 +1,684 @@
+/* =========================================================
+   Attendance Management System — Stylesheet
+   ========================================================= */
+
+:root {
+    --ink: #1c2420;
+    --ink-soft: #4b564f;
+    --paper: #f5f3ee;
+    --panel: #ffffff;
+    --line: #ddd8cb;
+    --sidebar: #17261f;
+    --sidebar-text: #cdd8cf;
+    --sidebar-active: #23392e;
+    --accent: #a8632a;
+    --accent-dark: #824c1f;
+    --present: #2f6b46;
+    --present-bg: #e7f1ea;
+    --absent: #9c3b2c;
+    --absent-bg: #f6e6e2;
+    --radius: 3px;
+    --font-heading: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    --font-body: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 0.6em 0;
+}
+
+a {
+    color: var(--accent-dark);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- App shell ---------- */
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    background: var(--sidebar);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: var(--radius);
+}
+
+.brand-text {
+    font-family: var(--font-heading);
+    font-size: 15px;
+    line-height: 1.25;
+    color: #fff;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 0;
+    flex-grow: 1;
+}
+
+.sidebar-nav a {
+    color: var(--sidebar-text);
+    padding: 11px 22px;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-nav a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+}
+
+.sidebar-nav a.active {
+    background: var(--sidebar-active);
+    border-left-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+}
+
+.sidebar-footer {
+    padding: 16px 22px 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logout-link {
+    color: #e7c9b8;
+    font-size: 14px;
+}
+
+/* ---------- Main area ---------- */
+.main-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+}
+
+.topbar h1 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.topbar-user {
+    font-size: 13px;
+    color: var(--ink-soft);
+}
+
+.content {
+    padding: 28px 32px 10px;
+    flex-grow: 1;
+}
+
+.page-footer {
+    padding: 16px 32px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+}
+
+/* ---------- Alerts ---------- */
+.alert {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-size: 14px;
+    border: 1px solid transparent;
+}
+
+.alert-success {
+    background: var(--present-bg);
+    color: var(--present);
+    border-color: #c6ddc9;
+}
+
+.alert-error {
+    background: var(--absent-bg);
+    color: var(--absent);
+    border-color: #e3c3b7;
+}
+
+/* ---------- Cards / panels ---------- */
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 24px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.panel-header h2 {
+    font-size: 17px;
+    margin: 0;
+}
+
+/* ---------- Stat grid (dashboard) ---------- */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+}
+
+.stat-box .stat-number {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+}
+
+.stat-box .stat-label {
+    font-size: 13px;
+    color: var(--ink-soft);
+}
+
+.stat-box.alert-box {
+    border-left-color: var(--absent);
+}
+
+.stat-box.alert-box .stat-number {
+    color: var(--absent);
+}
+
+/* ---------- Forms ---------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 600;
+}
+
+input[type=text],
+input[type=password],
+input[type=date],
+input[type=email],
+input[type=tel],
+input[type=number],
+select,
+textarea {
+    padding: 9px 11px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--ink);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+}
+
+.form-actions {
+    margin-top: 6px;
+    display: flex;
+    gap: 10px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.btn:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+}
+
+.btn-secondary:hover {
+    background: #eeeae0;
+    color: var(--ink);
+}
+
+.btn-danger {
+    background: var(--absent);
+    border-color: var(--absent);
+}
+
+.btn-danger:hover {
+    background: #7e2f22;
+    border-color: #7e2f22;
+}
+
+.btn-sm {
+    padding: 5px 12px;
+    font-size: 12.5px;
+}
+
+/* ---------- Tables ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--panel);
+    font-size: 14px;
+}
+
+thead th {
+    text-align: left;
+    padding: 11px 14px;
+    background: #eeece4;
+    border-bottom: 1px solid var(--line);
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+}
+
+tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background: #faf9f5;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.table-wrap table {
+    border: none;
+}
+
+.table-wrap .table-wrap {
+    border: none;
+}
+
+.actions-cell {
+    white-space: nowrap;
+}
+
+.actions-cell a {
+    margin-right: 12px;
+    font-size: 13px;
+}
+
+/* ---------- Badges ---------- */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-present {
+    background: var(--present-bg);
+    color: var(--present);
+}
+
+.badge-absent {
+    background: var(--absent-bg);
+    color: var(--absent);
+}
+
+.badge-warning {
+    background: #f6ead9;
+    color: var(--accent-dark);
+}
+
+.role-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    background: #e6edfb;
+    color: #2f5bd0;
+    vertical-align: middle;
+}
+
+/* ---------- Login page ---------- */
+.login-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sidebar);
+    padding: 20px;
+}
+
+.login-box {
+    background: var(--panel);
+    border-radius: var(--radius);
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+}
+
+.login-box .brand-icon {
+    margin: 0 auto 14px;
+}
+
+.login-box h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.login-sub {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-bottom: 26px;
+}
+
+.login-box .btn {
+    width: 100%;
+    margin-top: 6px;
+}
+
+.login-hint {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: center;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+}
+
+/* ---------- Filters row ---------- */
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.filter-row .form-group {
+    margin-bottom: 0;
+    min-width: 180px;
+}
+
+/* ---------- Tabs (reports) ---------- */
+.tab-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 22px;
+}
+
+.tab-row a {
+    padding: 10px 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    border-bottom: 2px solid transparent;
+}
+
+.tab-row a.active {
+    color: var(--accent-dark);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+}
+
+.tab-row a:hover {
+    text-decoration: none;
+    color: var(--accent-dark);
+}
+
+/* ---------- Attendance marking grid ---------- */
+.attendance-list {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.attendance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+}
+
+.attendance-row:last-child {
+    border-bottom: none;
+}
+
+.attendance-row:nth-child(even) {
+    background: #faf9f5;
+}
+
+.attendance-row .student-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.attendance-row .student-info strong {
+    font-size: 14px;
+}
+
+.attendance-row .student-info span {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+}
+
+.status-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.status-toggle label {
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--ink-soft);
+}
+
+.status-toggle input {
+    display: none;
+}
+
+.status-toggle input:checked+span {
+    font-weight: 700;
+}
+
+.status-toggle .opt-present:has(input:checked) {
+    background: var(--present-bg);
+    border-color: var(--present);
+    color: var(--present);
+}
+
+.status-toggle .opt-absent:has(input:checked) {
+    background: var(--absent-bg);
+    border-color: var(--absent);
+    color: var(--absent);
+}
+
+.mark-all-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.empty-state {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 14px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #eae7dd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--present);
+}
+
+.progress-bar-fill.low {
+    background: var(--absent);
+}
+
+.text-muted {
+    color: var(--ink-soft);
+    font-size: 13px;
+}
+
+.mt-0 {
+    margin-top: 0;
+}
+
+.required {
+    color: #a33a2f
+}
+
+.field-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 12.5px;
+    color: #6f6659
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+    border-color: #a33a2f
+}
+
+@media (max-width: 780px) {
+    .app-shell {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .content,
+    .topbar {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}
